@@ -1,5 +1,5 @@
 <?php
-
+require_once('admin/cfg/loader.php' );
 
 $url = substr($_SERVER['REQUEST_URI'], 1);
 $url = rtrim($url, '/');
@@ -14,3 +14,4 @@ if (isset($url[2])) {
         $controller->$url[1]();
     }
 }
+
