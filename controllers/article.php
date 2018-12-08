@@ -7,12 +7,12 @@ if (isset($_GET['page'])){
     $current_page = 1 ;
 }
 $per_page = 10 ;
-$total_count = Article::count_all_visible();
+$total_count = article::count_all_visible();
 
 $pagination = new Pagination($current_page, $per_page, $total_count);
 $offset = $pagination->offset();
 
-$articles = Article::find_all_visible_articles_per_page($per_page, $offset);
+$articles = article::find_all_visible_articles_per_page($per_page, $offset);
 
 $Parsedown = new Parsedown();
 $Parsedown->setSafeMode(true);
@@ -28,11 +28,11 @@ $smarty = new Smarty;
 $smarty->assign('articles', $articles);
 
     // <!-- подключаем футер -->
-include(SHARED_PATH . '/public_header.php');
+include(_HEADER . '/public_header.php');
 
-$smarty->display(PUBLIC_PATH . ('/tpls/articles.tpl'));
+$smarty->display(_ROOT_DIR . ('/tpls/articles.tpl'));
 //Вывод пагинации
-$url = root_path('/articles.php');
-echo $pagination->page_links();
+//$url = root_path('/article.php');
+//echo $pagination->page_links();
 
-include(SHARED_PATH . '/public_footer.php');
+include(_HEADER . '/public_footer.php');
